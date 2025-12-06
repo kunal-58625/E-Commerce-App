@@ -18,9 +18,10 @@ const app = express();
 app.use(cors({
     origin: [
         "http://localhost:5173",
-        "https://shophub-kunal.netlify.app/",
+        "https://shophub-kunal.netlify.app",
         process.env.FRONTEND_URL
     ].filter(Boolean),
+    methods: ["GET", "POST", "PUT", "DELETE"],
     credentials: true,
 }));
 app.use(express.json());

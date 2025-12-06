@@ -3,6 +3,9 @@ import { Link, useNavigate } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { fetchProducts } from '../store/productsSlice';
 import ProductCard from '../components/ProductCard';
+import CategoryCard from '../components/CategoryCard';
+import { categories } from '../data/categories';
+import heroImage from '../assets/hero-image.png';
 import './HomePage.css';
 
 const HomePage = () => {
@@ -68,8 +71,19 @@ const HomePage = () => {
                         </button>
                     </div>
                     <div className="hero-image animate-float" style={{ animationDelay: '1.5s' }}>
-                        <div className="hero-shape"></div>
+                        <img src={heroImage} alt="Online Shopping" className="hero-img" />
                     </div>
+                </div>
+
+                <div className="section-title-container">
+                    <h2 className="section-title">Shop by Category</h2>
+                    <div className="title-underline"></div>
+                </div>
+
+                <div className="category-grid">
+                    {categories.map((category) => (
+                        <CategoryCard key={category.id} category={category} />
+                    ))}
                 </div>
 
                 <div id="products" className="section-title-container">

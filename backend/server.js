@@ -34,7 +34,6 @@ app.use('/api/users', userRoutes);
 
 // Health check route
 app.get('/api/health', (req, res) => {
-    const mongoose = require('mongoose');
     res.json({
         status: 'OK',
         message: 'E-Commerce API is running',

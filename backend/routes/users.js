@@ -9,7 +9,7 @@ const router = express.Router();
 // Generate JWT Token
 const generateToken = (id) => {
     return jwt.sign({ id }, process.env.JWT_SECRET, {
-        expiresIn: process.env.JWT_EXPIRE,
+        expiresIn: process.env.JWT_EXPIRE || '30d',
     });
 };
 
@@ -101,8 +101,7 @@ router.post(
             } else {
                 res.status(401).json({ message: 'Invalid email or password' });
             }
-
-
+        } catch (error) {
             console.error('Login error details:', error);
             res.status(500).json({
                 message: 'Server error during login',

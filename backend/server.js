@@ -1,4 +1,5 @@
 import express from 'express';
+import mongoose from 'mongoose';
 import dotenv from 'dotenv';
 import cors from 'cors';
 import connectDB from './config/db.js';
@@ -33,10 +34,16 @@ app.use('/api/users', userRoutes);
 
 // Health check route
 app.get('/api/health', (req, res) => {
+    const mongoose = require('mongoose');
     res.json({
         status: 'OK',
         message: 'E-Commerce API is running',
-        timestamp: new Date().toISOString()
+        timestamp: new Date().toISOString(),
+        dbStatus: {
+            state: mongoose.connection.readyState,
+            name: mongoose.connection.name,
+            host: mongoose.connection.host
+        }
     });
 });
 

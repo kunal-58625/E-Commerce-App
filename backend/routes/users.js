@@ -101,7 +101,7 @@ router.post(
             } else {
                 res.status(401).json({ message: 'Invalid email or password' });
             }
-        } catch (error) {
+
 
             console.error('Login error details:', error);
             res.status(500).json({

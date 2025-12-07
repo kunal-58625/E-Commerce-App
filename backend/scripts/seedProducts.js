@@ -129,8 +129,9 @@ const products = [
 
 const seedDatabase = async () => {
     try {
+        // Connect to the specific database defined in ENV (ecommerce)
         await mongoose.connect(process.env.MONGODB_URI);
-        console.log('✅ MongoDB Connected');
+        console.log(`✅ MongoDB Connected to: ${mongoose.connection.name}`);
 
         // Clear existing products
         await Product.deleteMany();

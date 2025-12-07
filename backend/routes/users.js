@@ -38,6 +38,7 @@ router.post(
             // Check if user already exists
             const userExists = await User.findOne({ email });
             if (userExists) {
+                console.log('Register failed: User already exists:', email);
                 return res.status(400).json({ message: 'User already exists' });
             }
 
@@ -101,7 +102,7 @@ router.post(
                 res.status(401).json({ message: 'Invalid email or password' });
             }
         } catch (error) {
-        } catch (error) {
+
             console.error('Login error details:', error);
             res.status(500).json({
                 message: 'Server error during login',
